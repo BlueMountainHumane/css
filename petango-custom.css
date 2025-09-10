@@ -1,0 +1,131 @@
+@charset "UTF-8";
+/*! petango-custom.css — brand-agnostic card layout for Petango v2 iframe */
+
+/* ===== Base tokens (edit to your brand) ===== */
+:root{
+  --brand-text:#222;
+  --brand-muted:#6b7280;
+  --brand-soft:#555;
+  --brand-accent:#e67e22; /* primary accent */
+  --card-bg:#fff;
+  --page-bg:#f7f7f7;
+  --shadow:0 8px 24px rgba(0,0,0,.08);
+}
+
+/* ===== Minimal reset inside the iframe ===== */
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--page-bg);color:var(--brand-text);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.4}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+
+/* Remove table chrome Petango may emit */
+table, tr, td{border:0 !important;background:transparent !important}
+
+/* ===== Grid: turn results into a clean card layout =====
+   Common containers in Petango v2:
+   - #tblResults (table)
+   - .AdoptableItems / .resultsGrid
+   - sometimes body > table (single results table)
+*/
+#tblResults, .AdoptableItems, .resultsGrid, body > table{
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:24px;
+  width:100%;
+}
+
+/* Responsive columns */
+@media (max-width:960px){
+  #tblResults, .AdoptableItems, .resultsGrid, body > table{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media (max-width:560px){
+  #tblResults, .AdoptableItems, .resultsGrid, body > table{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ===== Card shell =====
+   Items often appear in <td>, .AdoptableItem, or .resultItem
+*/
+#tblResults td, .AdoptableItem, .resultItem, body > table td{
+  background:var(--card-bg);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  padding:0 !important;
+  border:0 !important;
+  vertical-align:top;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+#tblResults td:hover, .AdoptableItem:hover, .resultItem:hover, body > table td:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 28px rgba(0,0,0,.12);
+}
+
+/* Make whole card clickable when a wrapper link exists */
+#tblResults td > a, .AdoptableItem > a, .resultItem > a{display:block;color:inherit}
+
+/* ===== Photo ===== */
+#tblResults img, .AdoptableItem img, .resultItem img, body img{
+  width:100% !important;
+  height:220px !important;        /* adjust if you prefer taller cards */
+  object-fit:cover !important;
+  background:#ddd;
+}
+
+/* ===== Text block (Petango varies: generic DIV or .info) ===== */
+#tblResults td > div, .AdoptableItem .info, .resultItem .info, .card-body{
+  padding:14px 16px !important;
+}
+
+/* Name */
+#tblResults a, .AdoptableItem a, .resultItem a, .name, .card-title{
+  display:block;
+  font-weight:700;
+  font-size:1.125rem;
+  margin:0 0 6px;
+  color:var(--brand-text) !important;
+}
+
+/* Meta (sex / breed / age) */
+#tblResults td > div > span, .AdoptableItem .info span, .resultItem .info span{
+  display:inline-block;
+  font-size:.875rem;
+  color:var(--brand-soft);
+  margin-right:8px;
+}
+
+/* Location line (when present) */
+.loc, .location{
+  display:block;
+  margin-top:8px;
+  color:var(--brand-muted);
+  font-size:.875rem;
+}
+
+/* Status pill (styles common status nodes if present) */
+.pending, .status-adoptionpending, .adoptionpending, .status{
+  display:inline-block;
+  background:var(--brand-accent);
+  color:#fff !important;
+  font-weight:700;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:.75rem;
+  margin:12px 12px 0;
+}
+
+/* ===== Details popup polish (when detailsInPopup=Yes) ===== */
+#divPopup, .popup, .detailsPopup{font-family:inherit}
+#divPopup a, .popup a{color:var(--brand-accent)}
+/* Optional: improve buttons/links inside popup if present */
+.popup button, .popup input[type=button], .popup a.button{
+  background:var(--brand-accent);color:#fff;border:0;border-radius:8px;
+  padding:8px 12px;cursor:pointer
+}
+
+/* ===== Focus ring for accessibility ===== */
+a:focus{outline:2px solid var(--brand-accent);outline-offset:2px}
