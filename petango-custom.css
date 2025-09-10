@@ -2,6 +2,7 @@
 html, body.list-body, .col-md-12.list-body {
   background: #eef6ff !important;
   color: #0f172a;
+  justify-content: center; /* center each row */
   font-family: Inter, "Helvetica Neue", Arial, sans-serif;
 }
 
