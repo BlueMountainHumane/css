@@ -1,70 +1,76 @@
-/* TEMP: makes names big and red so we know the CSS loaded */
-body.list-body .list-animal-name a { color: red !important; font-size: 24px !important; }
-/* Base inside the iframe */
-html, body.list-body {
-  background:#000000;
-  color:#0e1e41;
-  font-family:"Futura", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+/* ---------- Base / reset inside the Petango iframe ---------- */
+html, body.list-body, .col-md-12.list-body {
+  background: transparent !important;   /* kills the black background */
+  color: #0f172a;
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
 }
 
-/* Hide the PetPlace banner */
-#PetConnectBanner { display:none !important; }
+/* Links */
+.list-body a { text-decoration: none; color: #1f2937; }
+.list-body a:hover { color: #3b82f6; }
 
-/* Grid layout for cards */
-#tblSearchResults.listing.list-table ul {
-  display:grid;
+/* ---------- Layout ---------- */
+.listing ul {
+  /* Turn Petango’s list into a responsive grid */
+  display: grid !important;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 28px;
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
 }
-#tblSearchResults.listing.list-table ul > li {
-  list-style:none;
-  margin:0 !important;
-}
+.listing ul li { list-style: none; }
 
-/* Card */
+/* ---------- Card ---------- */
 .list-item {
-  background:#fff;
-  border:1px solid #e9eef5;
-  border-radius:12px;
-  box-shadow:0 6px 18px rgba(0,0,0,.06);
-  padding:16px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(2, 6, 23, .06);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.list-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(2, 6, 23, .10);
 }
 
-/* Photo – override the inline 150px cap */
-.list-animal-photo.img-responsive {
-  max-width:none !important;
-  width:100% !important;
-  height:260px !important;       /* adjust to taste */
-  object-fit:cover !important;
-  border-radius:10px;
-  display:block;
-  margin:0 0 12px 0;
+/* Photo */
+.list-animal-photo-block { padding: 0 !important; }
+.list-animal-photo {
+  /* Override Petango inline max-width on <img> */
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 240px !important;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid #f1f5f9;
 }
 
-/* Name */
-.list-animal-name,
+/* ---------- Text / details ---------- */
+.list-animal-info-block { padding: 14px 16px 16px; }
+
 .list-animal-name a {
-  display:block;
-  font-size:20px;
-  font-weight:700;
-  color:#0e1e41 !important;
-  text-decoration:none !important;
-  margin:0 0 6px 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1.2;
 }
-
-/* Details lines */
 .list-animal-id,
-.list-anima-species, /* note: "anima" in source */
+.list-anima-species,
 .list-animal-sexSN,
 .list-animal-breed,
 .list-animal-age {
-  font-size:15px;
-  line-height:1.45;
-  color:#0e1e41 !important;
-  margin:0;
+  display: block;
+  font-size: 14px;
+  line-height: 1.35;
+  color: #475569;
+  margin-top: 4px;
 }
+.list-animal-breed { color: #334155; }
+.list-animal-age { color: #111827; font-weight: 600; margin-top: 6px; }
 
-/* Optional: hide the Pet ID if you don't want it shown */
-/* .list-animal-id { display:none; } */
+/* ---------- Misc cleanup ---------- */
+#PetConnectBanner { display: none !important; }  /* hide PetPlace banner */
