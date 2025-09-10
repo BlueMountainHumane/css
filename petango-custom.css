@@ -35,9 +35,9 @@ html, body.list-body, .col-md-12.list-body {
   margin: 6px 0 8px !important;
 }
 .list-animal-id,
-.list-anima-species,
 .list-animal-sexSN,
 .list-animal-breed,
+.list-anima-location,
 .list-animal-age {
   font-size: 14px !important;
   line-height: 1.35 !important;
