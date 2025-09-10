@@ -19,7 +19,7 @@ html, body.list-body, .col-md-12.list-body {
 /* Bigger photos across full card width */
 .list-animal-photo-block { padding: 0 !important; }
 .list-animal-photo {
-  width: 100% !important;
+  width: 320px !important;
   max-width: none !important;          /* overrides inline max-width */
   height: 320px !important;
   object-fit: cover !important;
