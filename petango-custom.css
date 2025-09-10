@@ -1,51 +1,68 @@
-/* ==== Scope to Petango iframe only (safe) ==== */
-body { font-family: "Work Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-
-/* Grid / cards */
-.list { display: flex; flex-wrap: wrap; gap: 24px; }
-.list-animal { 
-  background:#fff; 
-  border: 1px solid #e6e6e6; 
-  border-radius: 12px; 
-  box-shadow: 0 2px 10px rgba(0,0,0,.06);
-  overflow: hidden; 
-  width: calc(33.333% - 16px);       /* ≈ 3 columns on wide screens */
-}
-@media (max-width: 1000px){ .list-animal { width: calc(50% - 12px);} }
-@media (max-width: 640px){ .list-animal { width: 100%; } }
-
-/* Photo */
-.list-animal-photo, .list-animal-photo img { 
-  display:block; width:100%; height:auto; 
+/* Base inside the iframe */
+html, body.list-body {
+  background:#ffffff;
+  color:#0e1e41;
+  font-family:"Futura", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-/* Text block */
-.list-animal-info { padding: 14px 16px; line-height: 1.45; }
-.list-animal-name { 
-  display:block; font-weight:700; font-size: 20px; 
-  margin: 2px 0 8px; color:#231f20; text-decoration:none;
-}
-.list-animal-id { display:none !important; }           /* hide ID line */
-.list-animal-sexSN, 
-.list-animal-breed, 
-.list-animal-age { color:#4a4a4a; font-size: 15px; display:block; margin-bottom: 4px; }
-.list-animal-location { 
-  margin-top:10px; padding-top:10px; border-top:1px solid #eee; 
-  color:#2d2d2d; font-size: 14px;
-}
+/* Hide the PetPlace banner */
+#PetConnectBanner { display:none !important; }
 
-/* Links inside cards */
-.list-animal a { color: inherit; text-decoration: none; }
-.list-animal a:hover .list-animal-name { text-decoration: underline; }
-
-/* “Adoption Pending” or badges (if present) */
-.list-animal .adoptedBanner, 
-.list-animal .holdBanner, 
-.list-animal .adoptionPending { 
-  position:absolute; top:12px; left:12px; 
-  background:#f0c419; color:#231f20; 
-  padding:6px 10px; border-radius:999px; font-weight:600; font-size:12px;
+/* Grid layout for cards */
+#tblSearchResults.listing.list-table ul {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 28px;
+  padding:0;
+  margin:0;
+}
+#tblSearchResults.listing.list-table ul > li {
+  list-style:none;
+  margin:0 !important;
 }
 
-/* Tighten default table spacing some templates use */
-table { border-collapse: separate; border-spacing: 0; }
+/* Card */
+.list-item {
+  background:#fff;
+  border:1px solid #e9eef5;
+  border-radius:12px;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+  padding:16px;
+}
+
+/* Photo – override the inline 150px cap */
+.list-animal-photo.img-responsive {
+  max-width:none !important;
+  width:100% !important;
+  height:260px !important;       /* adjust to taste */
+  object-fit:cover !important;
+  border-radius:10px;
+  display:block;
+  margin:0 0 12px 0;
+}
+
+/* Name */
+.list-animal-name,
+.list-animal-name a {
+  display:block;
+  font-size:20px;
+  font-weight:700;
+  color:#0e1e41 !important;
+  text-decoration:none !important;
+  margin:0 0 6px 0;
+}
+
+/* Details lines */
+.list-animal-id,
+.list-anima-species, /* note: "anima" in source */
+.list-animal-sexSN,
+.list-animal-breed,
+.list-animal-age {
+  font-size:15px;
+  line-height:1.45;
+  color:#0e1e41 !important;
+  margin:0;
+}
+
+/* Optional: hide the Pet ID if you don't want it shown */
+/* .list-animal-id { display:none; } */
