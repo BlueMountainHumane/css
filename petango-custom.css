@@ -1,6 +1,6 @@
 /* ---------- Base / reset inside the Petango iframe ---------- */
 html, body.list-body, .col-md-12.list-body {
-  background: transparent !important;   /* kills the black background */
+  background: #eff6ff !important;
   color: #0f172a;
   font-family: Inter, "Helvetica Neue", Arial, sans-serif;
 }
