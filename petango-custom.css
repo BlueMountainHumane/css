@@ -1,3 +1,5 @@
+/* TEMP: makes names big and red so we know the CSS loaded */
+body.list-body .list-animal-name a { color: red !important; font-size: 24px !important; }
 /* Base inside the iframe */
 html, body.list-body {
   background:#ffffff;
