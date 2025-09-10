@@ -2,7 +2,7 @@
 body.list-body .list-animal-name a { color: red !important; font-size: 24px !important; }
 /* Base inside the iframe */
 html, body.list-body {
-  background:#ffffff;
+  background:#000000;
   color:#0e1e41;
   font-family:"Futura", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
