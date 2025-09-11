@@ -9,23 +9,7 @@
   margin-top: 8px !important;
 }
 
-/* Show the kennel/location row Petango hides */
-#tblSearchResults .list-item .list-animal-info-block .hidden {
-  display: block !important;
-  visibility: visible !important;
-  height: auto !important;
-  margin-top: 6px !important;
-  color: #334155 !important;
-  font-size: 14px !important;
-  line-height: 1.35 !important;
-}
 
-/* Optional: add a label */
-#tblSearchResults .list-item .list-animal-info-block .hidden::before {
-  content: "Location: ";
-  font-weight: 700;
-  color: #0f172a;
-}
 
 /* Light blue page background */
 html,
