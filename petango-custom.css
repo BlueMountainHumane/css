@@ -1,3 +1,14 @@
+/* Space above the grid inside the Petango iframe */
+.col-md-12.list-body {
+  padding-top: 24px !important;   /* adjust to taste */
+  box-sizing: border-box;         /* keep widths stable */
+}
+
+/* If it still looks tight, add a little more on the grid wrapper */
+#tblSearchResults.listing.list-table {
+  margin-top: 8px !important;
+}
+
 /* Show the kennel/location row Petango hides */
 #tblSearchResults .list-item .list-animal-info-block .hidden {
   display: block !important;
