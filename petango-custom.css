@@ -1,19 +1,36 @@
 /* Light blue page background */
-html, body.list-body, .col-md-12.list-body {
+html,
+body.list-body,
+.col-md-12.list-body {
   background: #eef6ff !important;
   color: #0f172a;
-  justify-content: center; /* center each row */
   font-family: Inter, "Helvetica Neue", Arial, sans-serif;
 }
 
+/* ---- CENTER THE GRID ---- */
+#tblSearchResults.listing.list-table ul {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 300px)); /* fixed 300px cards */
+  gap: 24px;
+  justify-content: center;                /* <-- centers the tracks */
+  padding: 0 !important;
+  margin: 0 auto !important;
+  list-style: none !important;
+  width: 100% !important;
+}
+#tblSearchResults.listing.list-table ul > li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+.listing .list-item { float: none !important; } /* kill Petango floats */
 
-
-/* Card look */
+/* ---- Card look ---- */
 .list-item {
   width: 300px !important;
   background: #fff;
   border-radius: 14px;
-  box-shadow: 0 2px 10px rgba(2,6,23,.08);
+  box-shadow: 0 2px 10px rgba(2, 6, 23, 0.08);
   overflow: hidden;
 }
 
@@ -21,7 +38,7 @@ html, body.list-body, .col-md-12.list-body {
 .list-animal-photo-block { padding: 0 !important; }
 .list-animal-photo {
   width: 100% !important;
-  max-width: none !important;          /* overrides inline max-width */
+  max-width: none !important;           /* overrides inline max-width */
   height: 320px !important;
   object-fit: cover !important;
   display: block !important;
@@ -38,7 +55,7 @@ html, body.list-body, .col-md-12.list-body {
 .list-animal-id,
 .list-animal-sexSN,
 .list-animal-breed,
-.list-anima-location,
+.list-animal-location,
 .list-animal-age {
   font-size: 14px !important;
   line-height: 1.35 !important;
@@ -51,6 +68,7 @@ html, body.list-body, .col-md-12.list-body {
   #tblSearchResults.listing.list-table ul {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
+    justify-content: center !important;  /* harmless with 1 column */
   }
   .list-animal-photo { height: 260px !important; }
 }
