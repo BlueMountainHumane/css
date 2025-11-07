@@ -99,5 +99,5 @@ body.list-body,
     gap: 16px !important;
     justify-content: center !important;  /* harmless with 1 column */
   }
-  .list-animal-photo { height: 260px !important; }
+  .list-animal-photo { height: 100% !important; }
 }
