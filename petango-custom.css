@@ -47,14 +47,30 @@ body.list-body,
   overflow: hidden;
 }
 
-/* Bigger photos across full card width */
-.list-animal-photo-block { padding: 0 !important; }
+/* Photo area: force a 2:3 portrait crop on every card */
+.list-animal-photo-block {
+  padding: 0 !important;
+  position: relative !important;
+  aspect-ratio: 2 / 3 !important;  /* width : height */
+  overflow: hidden !important;
+}
+
 .list-animal-photo {
+  position: absolute !important;
+  inset: 0 !important;
   width: 100% !important;
-  max-width: none !important;           /* overrides inline max-width */
-  height: 320px !important;
-  object-fit: cover !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover !important;    /* fill and crop */
   display: block !important;
+}
+
+/* Fallback for old browsers without aspect-ratio */
+@supports not (aspect-ratio: 2 / 3) {
+  .list-animal-photo-block {
+    height: 0 !important;
+    padding-top: 150% !important;   /* 2:3 = 150% */
+  }
 }
 
 /* Text spacing & sizing */
