@@ -102,80 +102,194 @@ body.list-body,
   .list-animal-photo { height: 100% !important; }
 }
 
-/* =========================
-   Petango DETAILS POPUP ONLY
-   ========================= */
-body.detail-body {
-  background: #eef6ff !important;
-  color: #0f172a;
-  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+/* ============================
+   BMHS — Petango POPUP styles
+   Scope: .detail-body only
+   ============================ */
+
+/* Base */
+.detail-body {
+  background: #eaf2ff !important;
+  color: #0f172a !important;
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Page frame */
-#DefaultLayoutDiv { max-width: 1120px; margin: 0 auto; padding: 8px 12px 32px; }
-.header { padding: 8px 0 12px; border-bottom: 1px solid #dbe2ea; }
+/* Containment */
+.detail-body #DefaultLayoutDiv {
+  max-width: 1120px !important;
+  margin: 0 auto !important;
+  padding: 8px 16px 28px !important;
+}
 
-/* Top-right toolbar (Close + share icons) */
-#toolbar ul { display: flex; gap: 10px; justify-content: flex-end; align-items: center; margin: 0; padding: 0; }
-#toolbar li { list-style: none; }
+/* Optional branding controls
+   Uncomment to hide vendor banners if desired */
+/* .detail-body #PetConnectBanner,
+.detail-body #petango_ad { display: none !important; } */
 
-/* “Close This Window” — light, readable */
-#BackAnchor { position: relative; display: inline-flex; align-items: center; padding: 8px 14px; border-radius: 9999px; background: #fff; border: 1px solid #cbd5e1; color: #0f172a; font-weight: 600; text-decoration: none; line-height: 1; }
-#BackAnchor img { opacity: 0; width: 0; height: 0; }        /* hide bitmap label */
-#BackAnchor::after { content: "Close This Window"; }        /* accessible, readable label */
+/* Page title (Meet Name) */
+.detail-body .detail-animal-name {
+  font-size: 28px !important;
+  line-height: 1.2 !important;
+  font-weight: 800 !important;
+  color: #334155 !important;
+  margin: 8px 0 12px !important;
+}
 
-/* Share buttons: keep simple */
-#toolbar .sharethis-inline-share-buttons { margin-left: 8px; }
-#toolbar .st-btn { box-shadow: none !important; border-radius: 10px !important; transform: none !important; }
+/* Header toolbar (Close / Share icons) */
+.detail-body #toolbar ul {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin: 6px 0 10px !important;
+  padding: 0 !important;
+}
+.detail-body #toolbar ul li { list-style: none !important; }
 
-/* Title below header */
-.detail-animal-name { font-size: 28px; font-weight: 700; color: #1f2a44; margin: 14px 0 16px; }
+/* Close button */
+.detail-body #BackAnchor,
+.detail-body a#BackAnchor {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 8px 14px !important;
+  border-radius: 18px !important;
+  background: #3b82f6 !important;
+  color: #fff !important;
+  border: 1px solid rgba(2, 6, 23, 0.08) !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
 
-/* Photo — same look as listing (2:3 portrait crop) */
-.detail-animal-photo {
+/* Share/print mini buttons (keep light, readable) */
+.detail-body #toolbar ul li a:not(#BackAnchor) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 10px !important;
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  text-decoration: none !important;
+}
+
+/* Focus visibility for keyboard users */
+.detail-body a:focus-visible,
+.detail-body button:focus-visible {
+  outline: 3px solid #0ea5e9 !important;
+  outline-offset: 2px !important;
+  border-radius: 8px;
+}
+
+/* Photo area */
+.detail-body .animal-details { padding-bottom: 12px !important; }
+.detail-body #imgAnimalPhoto,
+.detail-body img.detail-animal-photo,
+.detail-body img[name="imgAnimalPhoto"] {
   width: 100% !important;
   height: auto !important;
-  max-height: none !important;
-  aspect-ratio: 2 / 3;
-  object-fit: cover !important;
-  border-radius: 14px;
-  box-shadow: 0 2px 8px rgba(2,6,23,.08);
+  aspect-ratio: 2 / 3 !important;      /* match listing cards */
+  object-fit: cover !important;         /* consistent crop */
+  max-height: none !important;          /* override inline styles */
+  border-radius: 14px !important;
+  box-shadow: 0 2px 10px rgba(2, 6, 23, 0.08) !important;
 }
 
-/* Little photo-number buttons */
-.detail-photo-links { margin: 8px 0 16px; }
-.detail-photo-links .btn {
-  border: 0 !important;
-  border-radius: 10px !important;
+/* Photo chooser numbers */
+.detail-body .detail-photo-links,
+.detail-body #plPhotos {
+  margin: 10px 0 12px !important;
+}
+.detail-body .detail-photo-links .btn,
+.detail-body #plPhotos .btn,
+.detail-body a[id^="lnkPhoto"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 40px !important;
+  height: 36px !important;
+  margin-right: 8px !important;
+  border-radius: 8px !important;
   background: #0f172a !important;
   color: #fff !important;
-  padding: 8px 12px !important;
-  margin-right: 8px !important;
+  border: 0 !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
 }
 
-/* Details table — white rows all the way across */
-.detail-table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
-.detail-table td {
-  background: #ffffff !important;         /* full-width white */
-  color: #0f172a;
-  padding: 12px 16px;
-  border-bottom: 10px solid #eaf2ff;      /* space between rows */
+/* Detail table — rows fully white across */
+.detail-body .detail-table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 10px !important; /* row gap */
 }
-.detail-table .detail-label { width: 180px; font-weight: 600; color: #334155; }
-.detail-table .detail-value { color: #0f172a; }
-
-/* Rounded row ends */
-.detail-table tr:first-child td:first-child { border-top-left-radius: 12px; }
-.detail-table tr:first-child td:last-child  { border-top-right-radius: 12px; }
-.detail-table tr:last-child  td:first-child { border-bottom-left-radius: 12px; }
-.detail-table tr:last-child  td:last-child  { border-bottom-right-radius: 12px; }
-
-/* Bottom CTA buttons */
-.petPlaceButton { border-radius: 9999px !important; padding: 10px 18px !important; font-weight: 700 !important; box-shadow: 0 2px 6px rgba(2,6,23,.08); }
-.petPlaceButton_primary   { background: #2563eb !important; color: #fff !important; }
-.petPlaceButton_secondary { background: #fff !important; color: #1f2937 !important; border: 1px solid #cbd5e1 !important; }
-
-/* Two-column layout on wide screens (keeps Petango classes intact) */
-@media (min-width: 980px) {
-  .animal-details-wrapper { display: grid; grid-template-columns: minmax(320px, 480px) 1fr; column-gap: 24px; align-items: start; }
+.detail-body .detail-table tr { overflow: hidden !important; }
+.detail-body .detail-table td {
+  background: #ffffff !important;          /* enforce white rows */
+  border: 1px solid #e2e8f0 !important;
+  padding: 12px 14px !important;
+  vertical-align: middle !important;
 }
+.detail-body .detail-table td.detail-label {
+  width: 32% !important;
+  font-weight: 700 !important;
+  color: #334155 !important;
+  border-right: 0 !important;
+  border-radius: 10px 0 0 10px !important;
+}
+.detail-body .detail-table td.detail-value {
+  width: 68% !important;
+  color: #0f172a !important;
+  border-left: 0 !important;
+  border-radius: 0 10px 10px 0 !important;
+}
+
+/* Checkmark icon alignment fix inside value cells */
+.detail-body .detail-table td.detail-value img {
+  vertical-align: middle !important;
+}
+
+/* CTA buttons at bottom */
+.detail-body .petPlaceButton {
+  border-radius: 30px !important;
+  font-weight: 700 !important;
+  font-size: 18px !important;
+  padding: 10px 24px !important;
+  line-height: 1.35 !important;
+  border: 2px solid transparent !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  min-height: 44px !important;            /* touch target */
+}
+.detail-body .petPlaceButton_primary {
+  background: #c74d2f !important;          /* keep vendor hue */
+  color: #fff !important;
+}
+.detail-body .petPlaceButton_secondary {
+  background: #fff !important;
+  color: #1f2937 !important;
+  border-color: #1f2937 !important;
+}
+
+/* Reduce overly narrow columns on wide screens */
+@media (min-width: 992px) {
+  .detail-body .animal-details { padding-right: 18px !important; }
+  .detail-body .detail-table-wrapper { padding-left: 18px !important; }
+}
+
+/* Tighten layout on small screens */
+@media (max-width: 680px) {
+  .detail-body #DefaultLayoutDiv { padding: 8px 10px 24px !important; }
+  .detail-body .detail-animal-name { font-size: 24px !important; margin-top: 2px !important; }
+  .detail-body #toolbar ul { justify-content: space-between !important; }
+  .detail-body #BackAnchor { order: -1; } /* keep Close visible first */
+  .detail-body .detail-table td { padding: 12px !important; }
+}
+
+/* Links */
+.detail-body a { color: #1f5bbf; }
+.detail-body a:hover { text-decoration: underline; }
