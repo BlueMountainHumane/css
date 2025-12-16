@@ -103,97 +103,79 @@ body.list-body,
 }
 
 /* =========================
-   Petango POPUP (detail page)
+   Petango DETAILS POPUP ONLY
    ========================= */
 body.detail-body {
-  --bmhs-blue: #3b5ccc;          /* button background */
-  --bmhs-blue-dark: #2a469e;     /* button hover */
-  --icon-bg: #111827;            /* small icon tiles */
-  --row-border: #e5e7eb;
-  --text: #0f172a;
+  background: #eef6ff !important;
+  color: #0f172a;
   font-family: Inter, "Helvetica Neue", Arial, sans-serif;
-  color: var(--text);
 }
 
-/* Top bar: align right, consistent gaps */
-body.detail-body #toolbar { padding: 8px 8px 0 8px; }
-body.detail-body #toolbar ul {
-  display: flex !important;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+/* Page frame */
+#DefaultLayoutDiv { max-width: 1120px; margin: 0 auto; padding: 8px 12px 32px; }
+.header { padding: 8px 0 12px; border-bottom: 1px solid #dbe2ea; }
 
-/* Close button (replaces the tiny image) */
-body.detail-body #BackAnchor {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 16px;
-  border-radius: 9999px;
-  background: var(--bmhs-blue);
-  border: 1px solid var(--bmhs-blue);
-  color: #fff !important;
-  text-decoration: none !important;
-  font-weight: 700;
-  line-height: 1;
-  box-shadow: 0 6px 14px rgba(2, 6, 23, .12);
-}
-body.detail-body #BackAnchor:hover { background: var(--bmhs-blue-dark); border-color: var(--bmhs-blue-dark); }
-body.detail-body #BackAnchor img { display: none !important; }
-body.detail-body #BackAnchor::after { content: "Close This Window"; }
+/* Top-right toolbar (Close + share icons) */
+#toolbar ul { display: flex; gap: 10px; justify-content: flex-end; align-items: center; margin: 0; padding: 0; }
+#toolbar li { list-style: none; }
 
-/* Small action icons (share / print / email) */
-body.detail-body #toolbar li a:not(#BackAnchor) {
-  width: 36px; height: 36px;
-  display: inline-flex; align-items: center; justify-content: center;
-  border-radius: 10px;
-  background: var(--icon-bg);
-  box-shadow: 0 3px 10px rgba(17, 24, 39, .25);
-  padding: 0 !important; text-decoration: none !important;
-}
-body.detail-body #toolbar li a:not(#BackAnchor) img {
-  width: 18px !important; height: 18px !important;
-  filter: invert(1) brightness(2); /* make icon white */
-}
+/* “Close This Window” — light, readable */
+#BackAnchor { position: relative; display: inline-flex; align-items: center; padding: 8px 14px; border-radius: 9999px; background: #fff; border: 1px solid #cbd5e1; color: #0f172a; font-weight: 600; text-decoration: none; line-height: 1; }
+#BackAnchor img { opacity: 0; width: 0; height: 0; }        /* hide bitmap label */
+#BackAnchor::after { content: "Close This Window"; }        /* accessible, readable label */
 
-/* Table: all rows white */
-body.detail-body .detail-table {
-  width: 100%;
-  border-collapse: separate !important;
-  border-spacing: 0 8px !important;     /* vertical gap between rows */
-}
-body.detail-body .detail-table tr td { background: #fff !important; color: var(--text); }
+/* Share buttons: keep simple */
+#toolbar .sharethis-inline-share-buttons { margin-left: 8px; }
+#toolbar .st-btn { box-shadow: none !important; border-radius: 10px !important; transform: none !important; }
 
-/* Label and value cells with rounded pill look */
-body.detail-body .detail-label {
-  font-weight: 700;
-  padding: 12px 16px !important;
-  border: 1px solid var(--row-border) !important;
-  border-right: 0 !important;
-  border-radius: 12px 0 0 12px;
-  white-space: nowrap;
-}
-body.detail-body .detail-value {
-  padding: 12px 16px !important;
-  border: 1px solid var(--row-border) !important;
-  border-left: 0 !important;
-  border-radius: 0 12px 12px 0;
-}
+/* Title below header */
+.detail-animal-name { font-size: 28px; font-weight: 700; color: #1f2a44; margin: 14px 0 16px; }
 
-/* Tighten “click a number…” controls spacing */
-body.detail-body .detail-photo-links,
-body.detail-body #plPhotosContainer { margin: 6px 0 8px 0 !important; }
-
-/* Ensure large main photo keeps rounded corners and fits parent */
-body.detail-body .detail-animal-photo {
+/* Photo — same look as listing (2:3 portrait crop) */
+.detail-animal-photo {
   width: 100% !important;
-  max-width: none !important;
   height: auto !important;
-  border-radius: 14px !important;
-  display: block !important;
+  max-height: none !important;
+  aspect-ratio: 2 / 3;
+  object-fit: cover !important;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(2,6,23,.08);
+}
+
+/* Little photo-number buttons */
+.detail-photo-links { margin: 8px 0 16px; }
+.detail-photo-links .btn {
+  border: 0 !important;
+  border-radius: 10px !important;
+  background: #0f172a !important;
+  color: #fff !important;
+  padding: 8px 12px !important;
+  margin-right: 8px !important;
+}
+
+/* Details table — white rows all the way across */
+.detail-table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
+.detail-table td {
+  background: #ffffff !important;         /* full-width white */
+  color: #0f172a;
+  padding: 12px 16px;
+  border-bottom: 10px solid #eaf2ff;      /* space between rows */
+}
+.detail-table .detail-label { width: 180px; font-weight: 600; color: #334155; }
+.detail-table .detail-value { color: #0f172a; }
+
+/* Rounded row ends */
+.detail-table tr:first-child td:first-child { border-top-left-radius: 12px; }
+.detail-table tr:first-child td:last-child  { border-top-right-radius: 12px; }
+.detail-table tr:last-child  td:first-child { border-bottom-left-radius: 12px; }
+.detail-table tr:last-child  td:last-child  { border-bottom-right-radius: 12px; }
+
+/* Bottom CTA buttons */
+.petPlaceButton { border-radius: 9999px !important; padding: 10px 18px !important; font-weight: 700 !important; box-shadow: 0 2px 6px rgba(2,6,23,.08); }
+.petPlaceButton_primary   { background: #2563eb !important; color: #fff !important; }
+.petPlaceButton_secondary { background: #fff !important; color: #1f2937 !important; border: 1px solid #cbd5e1 !important; }
+
+/* Two-column layout on wide screens (keeps Petango classes intact) */
+@media (min-width: 980px) {
+  .animal-details-wrapper { display: grid; grid-template-columns: minmax(320px, 480px) 1fr; column-gap: 24px; align-items: start; }
 }
