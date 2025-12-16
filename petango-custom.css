@@ -102,79 +102,93 @@ body.list-body,
   .list-animal-photo { height: 100% !important; }
 }
 
-/* =====================  Petango DETAILS POPUP  ===================== */
-/* Page shell */
+/* =====================  PETANGO DETAILS POPUP  ===================== */
 body.detail-body {
-  background: #eef6ff !important;
-  color: #0f172a !important;
-  font-family: Inter, "Helvetica Neue", Arial, sans-serif !important;
+  background:#eef6ff !important;
+  color:#0f172a !important;
+  font-family: Inter,"Helvetica Neue",Arial,sans-serif !important;
 }
 
-/* Optional: remove PetPlace banner and extra buttons */
-body.detail-body #PetConnectBanner { display: none !important; }
-/* Uncomment to hide the two PetPlace buttons at the bottom
-body.detail-body .petPlaceButton { display: none !important; }
-*/
+/* Page container */
+body.detail-body #DefaultLayoutDiv {
+  max-width:1100px !important;
+  margin:0 auto !important;
+  padding:16px 12px !important;
+}
 
-/* Header */
+/* Header: remove PetPlace ad, align controls to the right */
+body.detail-body #PetConnectBanner { display:none !important; }
+body.detail-body .header { display:flex !important; align-items:center !important; gap:12px !important; }
+body.detail-body #petango_ad { display:none !important; }
+body.detail-body #toolbar { margin-left:auto !important; }
+body.detail-body #toolbar ul { display:flex !important; gap:8px !important; align-items:center !important; }
+
+/* Close button: replace image with a real button look */
+body.detail-body #BackAnchor img { display:none !important; }
+body.detail-body #BackAnchor {
+  display:inline-flex !important; align-items:center !important; justify-content:center !important;
+  height:36px !important; padding:0 14px !important;
+  border-radius:999px !important; background:#0f172a !important; color:#fff !important;
+  font-weight:700 !important; font-size:14px !important; text-decoration:none !important;
+}
+body.detail-body #BackAnchor::after { content:"Close"; }
+body.detail-body #BackAnchor:focus-visible,
+body.detail-body #toolbar ul li a:focus-visible { outline:3px solid #93c5fd !important; outline-offset:2px !important; }
+
+/* Make the other tiny square icons consistent (print/email/social if present) */
+body.detail-body #toolbar ul li a:not(#BackAnchor) {
+  width:36px !important; height:36px !important;
+  border-radius:999px !important; display:inline-flex !important;
+  align-items:center !important; justify-content:center !important;
+  background:#eef2ff !important; border:1px solid #cbd5e1 !important;
+  text-decoration:none !important;
+}
+body.detail-body #toolbar ul li a:not(#BackAnchor):hover { background:#dbeafe !important; }
+
+/* Title */
 body.detail-body .detail-animal-name {
-  font-size: 28px !important;
-  font-weight: 800 !important;
-  color: #5071c1 !important;
-  margin: 6px 0 14px !important;
+  font-size:28px !important; font-weight:800 !important;
+  color:#5071c1 !important; margin:8px 0 16px !important;
 }
 
-/* Layout spacing */
-body.detail-body .col-md-12 { padding: 10px 16px !important; }
-body.detail-body .animal-details { padding-right: 20px !important; }
+/* Two-column layout spacing */
+body.detail-body .animal-details { padding-right:24px !important; }
+body.detail-body .detail-table-wrapper { padding-left:0 !important; }
 
-/* Main photo: force a clean 2:3 crop */
+/* Main photo: force 2:3 crop, tidy edges */
 body.detail-body #imgAnimalPhoto {
-  width: 100% !important;
-  max-width: 420px !important;
-  height: auto !important;
-  max-height: none !important;
-  aspect-ratio: 2 / 3 !important;   /* keeps 2:3 frame */
-  object-fit: cover !important;     /* fills the frame */
-  border-radius: 12px !important;
-  box-shadow: 0 2px 10px rgba(2,6,23,.08) !important;
+  width:100% !important; max-width:440px !important;
+  aspect-ratio:2/3 !important; object-fit:cover !important;
+  height:auto !important; max-height:none !important;
+  border-radius:14px !important; box-shadow:0 2px 10px rgba(2,6,23,.08) !important;
 }
 
-/* “Click a number…” controls */
-body.detail-body .detail-photo-links {
-  margin-top: 10px !important;
-}
+/* Photo selector chips */
+body.detail-body .detail-photo-links { margin-top:10px !important; }
 body.detail-body .detail-photo-links a.btn {
-  border: 1px solid #cbd5e1 !important;
-  margin-right: 6px !important;
-  border-radius: 8px !important;
-  padding: 4px 10px !important;
-  color: #0f172a !important;
+  border:1px solid #cbd5e1 !important; margin-right:6px !important;
+  border-radius:8px !important; padding:4px 10px !important;
+  color:#0f172a !important; background:#fff !important;
 }
-body.detail-body .detail-photo-links a.btn:hover {
-  background: #e2e8f0 !important;
-}
+body.detail-body .detail-photo-links a.btn:hover { background:#e2e8f0 !important; }
 
-/* Details table */
-body.detail-body .detail-table {
-  width: 100% !important;
-  border-collapse: separate !important;
-  border-spacing: 0 6px !important;
-}
-body.detail-body .detail-table tr { background: #fff !important; }
+/* Details table as soft “pills” */
+body.detail-body .detail-table { width:100% !important; border-collapse:separate !important; border-spacing:0 8px !important; }
+body.detail-body .detail-table tr { background:#fff !important; }
 body.detail-body .detail-label {
-  width: 160px !important;
-  color: #334155 !important;
-  font-weight: 600 !important;
-  padding: 10px 12px !important;
-  border-radius: 8px 0 0 8px !important;
+  width:170px !important; color:#334155 !important; font-weight:700 !important;
+  padding:10px 12px !important; border-radius:10px 0 0 10px !important; white-space:nowrap !important;
 }
 body.detail-body .detail-value {
-  color: #0f172a !important;
-  padding: 10px 12px !important;
-  border-radius: 0 8px 8px 0 !important;
+  color:#0f172a !important; padding:10px 12px !important; border-radius:0 10px 10px 0 !important;
 }
 
-/* Close and share toolbar alignment */
-body.detail-body #toolbar ul { display: flex !important; gap: 8px !important; justify-content: flex-end !important; }
-body.detail-body #toolbar img { filter: grayscale(100%) brightness(0.3) !important; }
+/* Description readability */
+body.detail-body #tblDescription {
+  margin-top:12px !important; background:#fff !important; border-radius:12px !important;
+  padding:16px !important; line-height:1.55 !important;
+}
+
+/* Optional: de-emphasize the two PetPlace buttons */
+body.detail-body .petPlaceButton { border-radius:999px !important; }
+body.detail-body .petPlaceButton_secondary { border-color:#94a3b8 !important; color:#0f172a !important; }
