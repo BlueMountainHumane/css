@@ -102,105 +102,98 @@ body.list-body,
   .list-animal-photo { height: 100% !important; }
 }
 
-/************  POPUP ONLY  ************/
-body.detail-body{
-  background:#eaf2ff !important;
-  color:#0f172a !important;
-  font-family: Inter,"Helvetica Neue",Arial,sans-serif;
+/* =========================
+   Petango POPUP (detail page)
+   ========================= */
+body.detail-body {
+  --bmhs-blue: #3b5ccc;          /* button background */
+  --bmhs-blue-dark: #2a469e;     /* button hover */
+  --icon-bg: #111827;            /* small icon tiles */
+  --row-border: #e5e7eb;
+  --text: #0f172a;
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text);
 }
 
-/* Remove PetPlace banner strip in popup */
-body.detail-body #PetConnectBanner{ display:none !important; }
-
-/* Header: title + controls */
-body.detail-body .header{
-  display:flex !important;
-  align-items:center !important;
-  justify-content:space-between !important;
-  padding:10px 14px !important;
-  border-bottom:1px solid rgba(2,6,23,.08) !important;
-}
-body.detail-body .detail-animal-name{
-  font-size:28px !important;
-  font-weight:800 !important;
-  text-align:left !important;
-  padding:6px 0 !important;
+/* Top bar: align right, consistent gaps */
+body.detail-body #toolbar { padding: 8px 8px 0 8px; }
+body.detail-body #toolbar ul {
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-/* Close + share: larger hit areas and contrast (keeps original images) */
-body.detail-body #BackAnchor,
-body.detail-body #toolbar a{
-  display:inline-flex !important;
-  align-items:center; justify-content:center;
-  width:44px; height:44px; border-radius:999px;
-  background:#111827 !important;            /* dark pill */
-  box-shadow:0 1px 2px rgba(2,6,23,.08) !important;
+/* Close button (replaces the tiny image) */
+body.detail-body #BackAnchor {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background: var(--bmhs-blue);
+  border: 1px solid var(--bmhs-blue);
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 6px 14px rgba(2, 6, 23, .12);
 }
-body.detail-body #toolbar ul{
-  display:flex !important; gap:8px !important;
-  margin:0 !important; padding:0 !important; justify-content:flex-end !important;
+body.detail-body #BackAnchor:hover { background: var(--bmhs-blue-dark); border-color: var(--bmhs-blue-dark); }
+body.detail-body #BackAnchor img { display: none !important; }
+body.detail-body #BackAnchor::after { content: "Close This Window"; }
+
+/* Small action icons (share / print / email) */
+body.detail-body #toolbar li a:not(#BackAnchor) {
+  width: 36px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 10px;
+  background: var(--icon-bg);
+  box-shadow: 0 3px 10px rgba(17, 24, 39, .25);
+  padding: 0 !important; text-decoration: none !important;
 }
-body.detail-body #toolbar li{ list-style:none !important; }
-body.detail-body #BackAnchor img,
-body.detail-body #toolbar img{
-  width:20px !important; height:20px !important;
-  filter:invert(1) !important;               /* white glyphs */
-  opacity:.92 !important;
-}
-body.detail-body #BackAnchor:focus-visible,
-body.detail-body #toolbar a:focus-visible{
-  outline:2px solid #2563eb !important;
-  outline-offset:2px !important;
+body.detail-body #toolbar li a:not(#BackAnchor) img {
+  width: 18px !important; height: 18px !important;
+  filter: invert(1) brightness(2); /* make icon white */
 }
 
-/* Layout: one column on mobile, two on desktop */
-body.detail-body .animal-details,
-body.detail-body .detail-table-wrapper{ float:none !important; width:100% !important; }
-@media (min-width:900px){
-  body.detail-body .animal-details{ width:44% !important; float:left !important; }
-  body.detail-body .detail-table-wrapper{ width:56% !important; float:left !important; }
+/* Table: all rows white */
+body.detail-body .detail-table {
+  width: 100%;
+  border-collapse: separate !important;
+  border-spacing: 0 8px !important;     /* vertical gap between rows */
+}
+body.detail-body .detail-table tr td { background: #fff !important; color: var(--text); }
+
+/* Label and value cells with rounded pill look */
+body.detail-body .detail-label {
+  font-weight: 700;
+  padding: 12px 16px !important;
+  border: 1px solid var(--row-border) !important;
+  border-right: 0 !important;
+  border-radius: 12px 0 0 12px;
+  white-space: nowrap;
+}
+body.detail-body .detail-value {
+  padding: 12px 16px !important;
+  border: 1px solid var(--row-border) !important;
+  border-left: 0 !important;
+  border-radius: 0 12px 12px 0;
 }
 
-/* Photo: consistent 3:4 crop, cover, rounded corners */
-body.detail-body .detail-animal-photo{
-  width:100% !important; height:auto !important;
-  aspect-ratio:3 / 4;
-  object-fit:cover !important;
-  border-radius:12px !important;
-}
+/* Tighten “click a number…” controls spacing */
+body.detail-body .detail-photo-links,
+body.detail-body #plPhotosContainer { margin: 6px 0 8px 0 !important; }
 
-/* Photo selector buttons */
-body.detail-body .detail-photo-links .btn,
-body.detail-body #plPhotos a.btn{
-  min-width:40px !important; min-height:40px !important;
-  border-radius:8px !important;
-  background:#1f2937 !important; color:#fff !important; border:0 !important;
+/* Ensure large main photo keeps rounded corners and fits parent */
+body.detail-body .detail-animal-photo {
+  width: 100% !important;
+  max-width: none !important;
+  height: auto !important;
+  border-radius: 14px !important;
+  display: block !important;
 }
-body.detail-body .detail-photo-links .btn:focus-visible{ outline:2px solid #2563eb !important; outline-offset:2px !important; }
-
-/* Data table readability */
-body.detail-body .detail-table{
-  width:100% !important; border-collapse:separate !important; border-spacing:0 8px !important;
-}
-body.detail-body .detail-label{
-  width:36% !important; font-weight:700 !important;
-  background:#e7edf9 !important;
-  padding:10px 14px !important; border-radius:10px 0 0 10px !important;
-}
-body.detail-body .detail-value{
-  background:#fff !important; color:#111827 !important;
-  padding:10px 14px !important; border-radius:0 10px 10px 0 !important;
-}
-/* Make Intake Date easier to scan */
-body.detail-body #trIntakeDate .detail-value{ font-weight:700 !important; }
-
-/* CTAs */
-body.detail-body .petPlaceButton{
-  border-radius:999px !important;
-  font-weight:700 !important; font-size:16px !important;
-  padding:10px 20px !important; min-height:44px !important; line-height:1.2 !important;
-  border:2px solid transparent !important;
-}
-body.detail-body .petPlaceButton_primary{ background:#c74d2f !important; color:#fff !important; }
-body.detail-body .petPlaceButton_secondary{ background:#fff !important; color:#2f2f33 !important; border-color:#2f2f33 !important; }
-body.detail-body .petPlaceButton:focus-visible{ outline:2px solid #2563eb !important; outline-offset:2px !important; }
