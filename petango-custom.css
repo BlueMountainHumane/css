@@ -123,10 +123,8 @@ body.list-body,
   padding: 8px 16px 28px !important;
 }
 
-/* Optional branding controls
-   Uncomment to hide vendor banners if desired */
-/* .detail-body #PetConnectBanner,
-.detail-body #petango_ad { display: none !important; } */
+   .detail-body #PetConnectBanner,
+.detail-body #petango_ad { display: none !important; }
 
 /* Page title (Meet Name) */
 .detail-body .detail-animal-name {
@@ -137,53 +135,6 @@ body.list-body,
   margin: 8px 0 12px !important;
 }
 
-/* Header toolbar (Close / Share icons) */
-.detail-body #toolbar ul {
-  display: flex !important;
-  justify-content: flex-end !important;
-  align-items: center !important;
-  gap: 10px !important;
-  margin: 6px 0 10px !important;
-  padding: 0 !important;
-}
-.detail-body #toolbar ul li { list-style: none !important; }
-
-/* Close button */
-.detail-body #BackAnchor,
-.detail-body a#BackAnchor {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 8px 14px !important;
-  border-radius: 18px !important;
-  background: #3b82f6 !important;
-  color: #fff !important;
-  border: 1px solid rgba(2, 6, 23, 0.08) !important;
-  font-weight: 600 !important;
-  text-decoration: none !important;
-}
-
-/* Share/print mini buttons (keep light, readable) */
-.detail-body #toolbar ul li a:not(#BackAnchor) {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 44px !important;
-  height: 44px !important;
-  border-radius: 10px !important;
-  background: #ffffff !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #0f172a !important;
-  text-decoration: none !important;
-}
-
-/* Focus visibility for keyboard users */
-.detail-body a:focus-visible,
-.detail-body button:focus-visible {
-  outline: 3px solid #0ea5e9 !important;
-  outline-offset: 2px !important;
-  border-radius: 8px;
-}
 
 /* Photo area */
 .detail-body .animal-details { padding-bottom: 12px !important; }
@@ -246,11 +197,6 @@ body.list-body,
   color: #0f172a !important;
   border-left: 0 !important;
   border-radius: 0 10px 10px 0 !important;
-}
-
-/* Checkmark icon alignment fix inside value cells */
-.detail-body .detail-table td.detail-value img {
-  vertical-align: middle !important;
 }
 
 /* CTA buttons at bottom */
