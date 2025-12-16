@@ -141,7 +141,7 @@ body.list-body,
 .detail-body #imgAnimalPhoto,
 .detail-body img.detail-animal-photo,
 .detail-body img[name="imgAnimalPhoto"] {
-  width: 100% !important;
+  width: auto% !important;
   height: auto !important;
   aspect-ratio: 2 / 3 !important;      /* match listing cards */
   object-fit: cover !important;         /* consistent crop */
