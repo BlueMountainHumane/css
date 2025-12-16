@@ -102,71 +102,143 @@ body.list-body,
   .list-animal-photo { height: 100% !important; }
 }
 
-/* ==== Header controls: alignment, spacing, focus ==== */
-body.detail-body .header{display:flex!important;align-items:center!important;gap:8px!important}
-body.detail-body .detail-animal-name{margin:4px 0 12px!important;flex:1 1 auto!important}
-body.detail-body #toolbar{margin:0!important}
-body.detail-body #toolbar ul{display:flex!important;gap:8px!important;align-items:center!important}
+/* ===== Petango detail popup UX + a11y improvements ===== */
 
-/* Close pill */
-body.detail-body #BackAnchor img{display:none!important}
-body.detail-body #BackAnchor{
-  display:inline-flex!important;align-items:center!important;justify-content:center!important;
-  height:36px!important;padding:0 14px!important;border-radius:999px!important;
-  background:#0f172a!important;color:#fff!important;font-weight:700!important;font-size:14px!important;text-decoration:none!important
-}
-body.detail-body #BackAnchor::after{content:"Close"}
-body.detail-body #BackAnchor:focus-visible,
-body.detail-body #toolbar a:focus-visible{outline:3px solid #93c5fd!important;outline-offset:2px!important}
-
-/* Share icon buttons: bigger targets */
-body.detail-body #toolbar a:not(#BackAnchor){
-  width:36px!important;height:36px!important;border-radius:999px!important;display:inline-flex!important;
-  align-items:center!important;justify-content:center!important;background:#eef2ff!important;border:1px solid #cbd5e1!important
-}
-body.detail-body #toolbar a:not(#BackAnchor):hover{background:#dbeafe!important}
-
-/* ==== Photo: true 2:3 crop via wrapper ==== */
-body.detail-body .animal-details{max-width:460px!important}
-body.detail-body .animal-details .detail-animal-photo.img-responsive{
-  width:100%!important;height:100%!important;object-fit:cover!important; /* fill the box */
-  aspect-ratio:auto!important; /* let the container control ratio */
-}
-/* Create the 2:3 box the image must fill */
-body.detail-body .animal-details{position:relative!important}
-body.detail-body .animal-details::before{
-  content:"";display:block;aspect-ratio:2/3;width:100%;
-}
-body.detail-body .animal-details .detail-animal-photo{
-  position:absolute;inset:0;border-radius:14px!important;box-shadow:0 2px 10px rgba(2,6,23,.08)!important
+/* Base type, colors, spacing */
+body.detail-body {
+  background:#eaf2ff;
+  color:#0f172a;
+  font-family: Inter, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  line-height:1.55;
 }
 
-/* Spacing above thumbnail number chips */
-body.detail-body .detail-photo-links{margin:8px 0 0!important}
-
-/* Table readability */
-body.detail-body .detail-table{border-collapse:separate!important;border-spacing:0 8px!important}
-body.detail-body .detail-label{
-  width:180px!important;color:#1f2937!important;font-weight:700!important;
-  background:#e6edf7!important;border-radius:10px 0 0 10px!important;padding:10px 12px!important
-}
-body.detail-body .detail-value{
-  background:#fff!important;color:#0f172a!important;border-radius:0 10px 10px 0!important;padding:10px 12px!important
+/* Center the page content and keep a readable width */
+#DefaultLayoutDiv {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 16px;
 }
 
-/* Page padding and light background */
-body.detail-body{background:#eef6ff!important;color:#0f172a!important}
-body.detail-body #DefaultLayoutDiv{max-width:1100px!important;margin:0 auto!important;padding:16px 12px!important}
+/* Optional: remove PetPlace/ads chrome to reduce noise */
+#PetConnectBanner,
+#petango_ad { display:none !important; }
 
-/* Mobile stacking */
-@media (max-width:900px){
-  body.detail-body .animal-details, body.detail-body .detail-table-wrapper{float:none!important;width:100%!important}
-  body.detail-body .animal-details::before{aspect-ratio:3/4} /* a little shorter on phones */
+/* Header toolbar: Close + share */
+#toolbar ul {
+  display:flex;
+  gap:8px;
+  justify-content:flex-end;
+  align-items:center;
+  margin: 8px 0 0 0;
+  padding: 0;
+  list-style:none;
 }
 
-/* Reduced motion and print remain as before */
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-@media print{
-  body.detail-body{background:#fff!important}
-  #toolbar,.detail-photo-links,.petPlaceButton_primary,.petPlaceButton_secondary{display:none!important}
+#toolbar a,
+#BackAnchor {
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+  min-width:44px;               /* AAA target size */
+  min-height:44px;              /* AAA target size */
+  padding:8px 12px;
+  border-radius:999px;
+  background:#0f172a;
+  color:#fff !important;
+  text-decoration:none !important;
+  font-weight:700;
+  font-size:14px;
+  box-shadow:0 2px 6px rgba(2,6,23,.12);
+}
+
+/* Keep icon images visible on dark buttons */
+#toolbar img { filter: invert(1) contrast(1.2); }
+
+/* Photo: consistent portrait ratio with clean crop */
+.detail-animal-photo {
+  width:100% !important;
+  height:auto !important;
+  max-height:none !important;
+  aspect-ratio: 2 / 3;          /* DSLR-style portrait */
+  object-fit: cover !important;
+  border-radius:14px;
+  box-shadow:0 10px 24px rgba(2,6,23,.10);
+}
+
+/* Photo selector numbers: large, tappable */
+.detail-photo-links .btn,
+.detail-photo-links a.btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:44px;               /* AAA target size */
+  min-height:44px;              /* AAA target size */
+  padding:0 10px;
+  border-radius:10px;
+  background:#e2e8f0;
+  color:#0f172a !important;
+  font-weight:600;
+  margin-right:8px;
+}
+
+/* Detail table: card-like rows with better scanability */
+.detail-table { 
+  width:100%;
+  border-collapse:separate !important;
+  border-spacing:0 10px !important;   /* row gaps */
+}
+
+.detail-table tr {
+  background:#fff;
+  box-shadow:0 1px 3px rgba(2,6,23,.08);
+  border-radius:12px;
+}
+
+.detail-table td {
+  padding:12px 16px !important;
+}
+
+.detail-table td:first-child {
+  width: 220px;                        /* stable label column */
+  font-weight:700;
+  color:#0f172a;
+  border-top-left-radius:12px;
+  border-bottom-left-radius:12px;
+}
+
+.detail-table td:last-child {
+  color:#111827;
+  border-top-right-radius:12px;
+  border-bottom-right-radius:12px;
+}
+
+/* Buttons at the bottom (Favorite / Search) */
+.petPlaceButton {
+  min-height:44px; min-width:44px;     /* larger tap targets */
+  border-radius:999px !important;
+  font-weight:700 !important;
+  padding:10px 20px !important;
+  border-width:2px !important;
+}
+
+.petPlaceButton_primary { background:#2563eb !important; color:#fff !important; }
+.petPlaceButton_secondary { background:#fff !important; color:#0f172a !important; border-color:#0f172a !important; }
+
+/* Strong, visible focus for keyboard users */
+a:focus-visible,
+button:focus-visible,
+.petPlaceButton:focus-visible,
+.detail-photo-links .btn:focus-visible {
+  outline:3px solid #2563eb;
+  outline-offset:2px;
+}
+
+/* Respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+  * { transition:none !important; animation:none !important; }
+}
+
+@media (prefers-contrast: more) {
+  .petPlaceButton_primary { background:#000 !important; }
+  .detail-table tr { box-shadow:none; }
 }
